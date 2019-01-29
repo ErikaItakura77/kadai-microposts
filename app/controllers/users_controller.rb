@@ -9,6 +9,7 @@ before_action :require_user_logged_in, only: [:index, :show]
     @user = User.find(params[:id])
     @microposts = @user.microposts.order('created_at DESC').page(params[:page])
     counts(@user)
+    @favorites = Favorite.where("user_id = ?", @user)
   end
 
   def new
@@ -26,7 +27,23 @@ before_action :require_user_logged_in, only: [:index, :show]
       render :new
     end
   end
+  
+  # 特定のユーザーがお気に入りした投稿の一覧
+  def fav_microposts
+    @user = User.find(params[:id])
+    @microposts = @user.fav_microposts.page(params[:page])
+    counts(@user)
 
+    # 送られたidを使ってユーザーを取ってくる
+    # @userがお気に入りをしたmicropostsを取ってくる
+  end
+  
+  def fav_microposters
+    @micropost = Micropost.find(params[:id])
+    @fav_microposters = @micropost.fav_microposters.page(params[:page])
+    counts(@user)
+  end
+  
   private
 
   def user_params
