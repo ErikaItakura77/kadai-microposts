@@ -8,7 +8,7 @@
         <img class="media-object img-rounded img-responsive" src="<%= gravatar_url(@user, { size: 500 }) %>" alt="">
       </div>
     </div>
-     <%= render 'microposts/microposts', microposts: @microposts %>
+    <%= render 'microposts/microposts', microposts: @microposts %>
   </aside>
   <div class="col-xs-8">
     <ul class="nav nav-tabs nav-justified">
@@ -17,9 +17,9 @@
           <%= @count_microposts %></span>
         <% end %>
       </li>
-      <li class="<%= 'active' if current_page?(fav_microposts_user_path(@user)) %>">
-        <%= link_to fav_microposts_user_path(@user) do %>Fav_microposts <span class="badge">
-          <%= @count_fav_microposts %></span>
+      <li class="<%= 'active' if current_page?(likes_user_path(@user)) %>">
+        <%= link_to likes_user_path(@user) do %>Likes <span class="badge">
+          <%= @count_likes %></span>
         <% end %>
       </li>
     </ul>

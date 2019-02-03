@@ -29,11 +29,10 @@ before_action :require_user_logged_in, only: [:index, :show]
   end
   
   # 特定のユーザーがお気に入りした投稿の一覧
-  def fav_microposts
+  def likes
     @user = User.find(params[:id])
-    @microposts = @user.fav_microposts.page(params[:page])
+    @microposts = @user.likes.page(params[:page])
     counts(@user)
-
     # 送られたidを使ってユーザーを取ってくる
     # @userがお気に入りをしたmicropostsを取ってくる
   end

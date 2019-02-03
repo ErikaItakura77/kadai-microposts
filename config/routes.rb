@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :show, :new, :create] do
     
      member do
-      get :fav_microposts
+      get :likes
       get :fav_microposters
      end
   end
