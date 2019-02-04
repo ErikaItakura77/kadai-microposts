@@ -49,12 +49,6 @@ before_action :require_user_logged_in, only: [:index, :show]
     # @userがお気に入りをしたmicropostsを取ってくる
   end
   
-  def fav_microposters
-    @micropost = Micropost.find(params[:id])
-    @fav_microposters = @micropost.fav_microposters.page(params[:page])
-    counts(@user)
-  end
-  
   private
 
   def user_params
