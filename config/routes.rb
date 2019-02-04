@@ -7,7 +7,13 @@ Rails.application.routes.draw do
   
   get 'signup', to: 'users#new'
   resources :users, only: [:index, :show, :new, :create] do
-    
+    member do
+      get :followings
+      get :followers
+    end
+     collection do
+      get :search
+    end
      member do
       get :likes
       get :fav_microposters
@@ -15,6 +21,7 @@ Rails.application.routes.draw do
   end
   
   resources :microposts, only: [:create, :destroy]
+  resources :relationships, only: [:create, :destroy]
   resources :favorites, only: [:create, :destroy]
   
 end
