@@ -16,7 +16,6 @@ Rails.application.routes.draw do
     end
      member do
       get :likes
-      get :fav_microposters
      end
   end
   
